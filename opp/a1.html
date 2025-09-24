@@ -65,7 +65,7 @@
     }
     svg {
       max-width: 1200px;
-      width: 100%;
+      width: 90%;
       height: auto;
     }
 
@@ -77,7 +77,7 @@
     .node.show { transform: scale(1); }
 
     .node text.icon {
-      font-size: 36px; /* الايقونات أكبر */
+      font-size: 36px; /* افتراضي */
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.5s ease, transform 0.3s ease;
@@ -133,32 +133,15 @@
       .tree-container {
         margin-top: 150px;
       }
-      .node text.icon { font-size: 28px; }
-      .label { font-size: 16px; }
+
+      /* تكبير الشجرة على الموبايل */
+      svg {
+        width: 100%;
+        height: auto;
+      }
+      .node text.icon { font-size: 60px; }
+      .label { font-size: 22px; }
     }
-    .tree {
-  width: 80%;   /* افتراضي للكمبيوتر */
-  max-width: 900px;
-}
-
-/* تنسيق خاص للموبايل */
-@media (max-width: 768px) {
-  .tree {
-    width: 100%;   /* تاخد الشاشة كلها */
-    max-width: 100%;
-  }
-
-  .tree img {
-    width: 100%;   /* الصورة تاخد الشاشة */
-    height: auto;
-  }
-
-  .tree .branch {
-    transform: scale(1.2); /* تكبير الايقونات والفروع */
-    margin: 15px;
-  }
-}
-
   </style>
 </head>
 <body>
@@ -308,4 +291,3 @@
   </script>
 </body>
 </html>
-
