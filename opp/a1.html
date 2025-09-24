@@ -3,78 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="img/ايقونة.ico" type="image/x-icon">
   <title>الاحصاء التطبيقي</title>
   <style>
     body {
       margin: 0;
-      background: linear-gradient(#200016,#10001f);
+      background: linear-gradient(#200016, #10001f);
       font-family: 'Cairo', sans-serif;
       direction: rtl;
       color: #fff;
+      overflow-x: hidden;
     }
 
-    /* ===== شريط الأدوات ===== */
-    a{ text-decoration: none; color: #fff; }
-    header{
+    /* ===== الهيدر ===== */
+    header {
       position: fixed;
-      top:0;
-      left:0;
+      top: 0;
       width: 100%;
       z-index: 100;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 15px 30px;
+      padding: 15px 20px;
       background: rgba(0,0,0,0.4);
       backdrop-filter: blur(6px);
     }
-    header .logo{
-      font-size: 24px;
-      font-weight: bold;
+    header h2 {
+      margin: 0;
     }
-    header ul{
+    header .logo {
+      font-size: 26px;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+    }
+    header ul {
       display: flex;
       list-style: none;
+      margin: 0;
+      padding: 0;
       gap: 20px;
     }
-    header ul li a{
+    header ul li a {
       padding: 6px 15px;
       border-radius: 20px;
+      color: #fff;
+      text-decoration: none;
       transition: 0.3s;
     }
-    header ul li a:hover, .active{
+    header ul li a:hover,
+    .active {
       background: #fff;
       color: #200016;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 26px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: #fff;
     }
 
     /* ===== الشجرة ===== */
     .tree-container {
-      width: 100%;
-      padding: 90px 10px 20px; /* padding-top عشان الهيدر */
-      overflow-x: auto;
+      margin-top: 120px; /* مسافة للهيدر */
+      padding: 10px;
+      display: flex;
+      justify-content: center;
     }
     svg {
+      max-width: 1200px;
       width: 100%;
-      max-width: 1100px;
       height: auto;
-      margin: auto;
-      display: block;
     }
 
-    .node { cursor: pointer; transform: scale(0); transition: transform 0.5s ease; }
+    .node {
+      cursor: pointer;
+      transform: scale(0);
+      transition: transform 0.5s ease;
+    }
     .node.show { transform: scale(1); }
 
     .node text.icon {
-      font-size: 28px;
+      font-size: 36px; /* الايقونات أكبر */
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.5s ease, transform 0.3s ease;
@@ -83,7 +86,7 @@
     .node:hover text.icon { transform: scale(1.4); }
 
     .label {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: bold;
       fill: white;
       text-anchor: middle;
@@ -93,9 +96,10 @@
     .label.show { opacity: 1; }
 
     .root { fill: #8d6e63; stroke: #5d4037; }
+
     path.branch {
       stroke: #5d4037;
-      stroke-width: 3.5;
+      stroke-width: 4;
       fill: none;
       stroke-dasharray: 400;
       stroke-dashoffset: 400;
@@ -103,69 +107,60 @@
     }
     @keyframes grow { to { stroke-dashoffset: 0; } }
 
-    .leaf { fill: #66bb6a; opacity: 0; transition: opacity 0.8s ease; }
+    .leaf {
+      fill: #66bb6a;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
     .leaf.show { opacity: 1; }
 
-    .node.midterm text.icon { font-size: 32px; fill: #ffeb3b; }
-    .node.final text.icon { font-size: 34px; fill: #ff9800; }
+    .node.midterm text.icon { font-size: 40px; fill: #ffeb3b; }
+    .node.final text.icon { font-size: 42px; fill: #ff9800; }
+    .section-node text.icon { font-size: 44px; fill: #4caf50; }
+    .section-node .label { font-size: 20px; fill: #a5d6a7; }
 
-    .section-node text.icon { font-size: 40px; fill: #4caf50; }
-    .section-node .label { font-size: 18px; fill: #a5d6a7; }
-
-    /* ===== الموبايل ===== */
-    @media (max-width: 768px){
-      header ul {
-        display: none;
+    /* ===== ريسبونسيف ===== */
+    @media (max-width: 768px) {
+      header {
         flex-direction: column;
-        background: rgba(0,0,0,0.9);
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        width: 200px;
-        border-radius: 10px;
-        padding: 15px;
+        gap: 10px;
+        text-align: center;
       }
-      header ul.show { display: flex; }
-      .menu-toggle { display: block; }
-      .tree-container { padding-top: 70px; }
-      svg { max-width: 100%; }
-      .label { font-size: 12px; }
+      header ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .tree-container {
+        margin-top: 150px;
+      }
+      .node text.icon { font-size: 28px; }
+      .label { font-size: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== الهيدر ===== -->
   <header>
-    <h2><a href="./night.html" class="logo">Hagag</a></h2>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <ul id="navMenu">
-        <li><a href="./night.html" class="active">Home</a></li>
+    <h2><a href="./night.html" class="logo">hagag</a></h2>
+    <ul>
+      <li><a href="./night.html" class="active">Home</a></li>
     </ul>
   </header>
 
-  <!-- ===== الشجرة ===== -->
   <div class="tree-container">
-    <svg id="tree" viewBox="0 0 1200 1100" preserveAspectRatio="xMidYMin meet">
+    <svg id="tree" viewBox="0 0 1400 1200" preserveAspectRatio="xMidYMin meet">
       <!-- الجذع -->
-      <rect x="580" y="850" width="40" height="200" class="root"></rect>
+      <rect x="680" y="950" width="40" height="200" class="root"></rect>
       <!-- الجذور -->
-      <path d="M580 1050 C560 1080, 600 1080, 580 1110" stroke="#5d4037" stroke-width="6" fill="none"/>
-      <path d="M620 1050 C640 1080, 600 1080, 620 1110" stroke="#5d4037" stroke-width="6" fill="none"/>
-      <text x="600" y="830" text-anchor="middle" class="label show">📘 الاحصاء التطبيقي</text>
+      <path d="M680 1150 C660 1180, 700 1180, 680 1210" stroke="#5d4037" stroke-width="6" fill="none"/>
+      <path d="M720 1150 C740 1180, 700 1180, 720 1210" stroke="#5d4037" stroke-width="6" fill="none"/>
+      <text x="700" y="930" text-anchor="middle" class="label show">📘 الاحصاء التطبيقي</text>
     </svg>
   </div>
 
-  <footer style="text-align:center; padding:20px; font-size:14px; color:#aaa;">
-    &copy; 2023 Abdelwahab Ahmed
-  </footer>
+  <p style="text-align:center;margin:30px 0;">copyright &copy; 2023 Abdelwahab Ahmed</p>
 
   <script>
-    // toggle menu
-    function toggleMenu() {
-      document.getElementById("navMenu").classList.toggle("show");
-    }
-
     const lectures = [
       { title: "المحاضرة 1", link: "./pdf/قواعد بيانات 1.pdf", icon: "📖" },
       { title: "المحاضرة 2", link: "#", icon: "📖" },
@@ -182,12 +177,12 @@
     ];
 
     const svg = document.getElementById("tree");
-    const centerX = 600, startY = 850;
-    const offsetY = 70;
+    const centerX = 700, startY = 950;
+    const offsetY = 80;
 
     function addLeaf(x, y, delay) {
       const leaf = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-      const rx = Math.random() * 8 + 4;
+      const rx = Math.random() * 10 + 5;
       const ry = rx / 2;
       leaf.setAttribute("cx", x + (Math.random() * 40 - 20));
       leaf.setAttribute("cy", y + (Math.random() * 30 - 15));
@@ -201,7 +196,7 @@
     lectures.forEach((lec, i) => {
       const side = i % 2 === 0 ? 1 : -1;
       const level = Math.floor(i / 2) + 1;
-      const offsetX = 220 * side;
+      const offsetX = 250 * side;
       const offsetYtotal = level * offsetY;
 
       const x = centerX + offsetX;
@@ -231,7 +226,7 @@
 
       const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
       text.setAttribute("x", x);
-      text.setAttribute("y", y + 30);
+      text.setAttribute("y", y + 35);
       text.setAttribute("class", "label");
       text.textContent = lec.title;
       g.appendChild(text);
@@ -244,26 +239,23 @@
         text.classList.add("show");
       }, (i + 1) * 400);
 
-      for (let j = 0; j < 3; j++) {
+      for (let j = 0; j < 4; j++) {
         addLeaf(x, y, (i + 1) * 500 + j * 200);
       }
     });
 
-    // فرع السكاشن
-    const secX = centerX + 350;
-    const secY = startY - 150;
+    const secX = centerX + 380;
+    const secY = startY - 200;
 
     const secPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    secPath.setAttribute("d", `M${centerX},${startY} Q${centerX+200},${secY+100} ${secX},${secY}`);
+    secPath.setAttribute("d", `M${centerX},${startY} Q${centerX+250},${secY+100} ${secX},${secY}`);
     secPath.setAttribute("class", "branch");
     svg.appendChild(secPath);
 
     const secG = document.createElementNS("http://www.w3.org/2000/svg", "g");
     secG.setAttribute("class", "node section-node");
-    secG.addEventListener("click", () => {
-      window.open("a-1.html", "_blank");
-    });
-    
+    secG.addEventListener("click", () => window.open("a-1.html", "_blank"));
+
     const secIcon = document.createElementNS("http://www.w3.org/2000/svg", "text");
     secIcon.setAttribute("x", secX);
     secIcon.setAttribute("y", secY + 5);
@@ -274,7 +266,7 @@
 
     const secText = document.createElementNS("http://www.w3.org/2000/svg", "text");
     secText.setAttribute("x", secX);
-    secText.setAttribute("y", secY + 30);
+    secText.setAttribute("y", secY + 35);
     secText.setAttribute("class", "label");
     secText.textContent = "السكاشن";
     secG.appendChild(secText);
@@ -287,7 +279,7 @@
       secText.classList.add("show");
     }, (lectures.length + 1) * 400);
 
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < 6; j++) {
       addLeaf(secX, secY, (lectures.length + 2) * 400 + j * 200);
     }
   </script>
