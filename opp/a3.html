@@ -1,121 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/ايقونة.ico" type="image/x-icon">
-    <title>Entrepreneurship</title>
-    <link rel="stylesheet" href="a.css">
+  <meta charset="UTF-8">
+  <link rel="icon" href="img/ايقونة.ico" type="image/x-icon">
+  <title>تحليل الاعمال والتنقيب في البيانات</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(#200016,#10001f);
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+      color: #fff;
+    }
+
+    .tree-container {
+      width: 100%;
+      height: auto;
+      padding: 20px;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .node {
+      cursor: pointer;
+      transform: scale(0);
+      transition: transform 0.5s ease;
+    }
+    .node.show { transform: scale(1); }
+
+    .node text.icon {
+      font-size: 28px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.3s ease;
+    }
+    .node text.icon.show { opacity: 1; }
+    .node:hover text.icon { transform: scale(1.4); }
+
+    .label {
+      font-size: 14px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .label.show { opacity: 1; }
+
+    .root {
+      fill: #8d6e63;
+      stroke: #5d4037;
+    }
+
+    path.branch {
+      stroke: #5d4037;
+      stroke-width: 3.5;
+      fill: none;
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: grow 1.5s forwards;
+    }
+
+    @keyframes grow { to { stroke-dashoffset: 0; } }
+
+    .leaf {
+      fill: #66bb6a;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .leaf.show { opacity: 1; }
+
+    .node.midterm text.icon { font-size: 32px; fill: #ffeb3b; }
+    .node.final text.icon { font-size: 34px; fill: #ff9800; }
+
+    .section-node text.icon { font-size: 40px; fill: #4caf50; }
+    .section-node .label { font-size: 18px; fill: #a5d6a7; }
+  </style>
 </head>
 <body>
-    <div class="contant">
-        <div id="WorkingProcess">
-        
-            <button onclick="document.location='pdf/ريادة اعمال 1.pdf'" type="button" class="button" id="a1">
-               <img src="img/صور/1.png" width="300px">
-                <div class="button-top">المحاضرة الاولي
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        
-            <button onclick="document.location='pdf/ريادة اعمال 2.pdf'" type="button" class="button" id="a2">
-                <img src="img/صور/2.png" width="300px">
-                <div class="button-top">المحاضرة الثانية
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        
-            <button onclick="document.location='pdf/ريادة اعمال 3.pdf'" type="button" class="button" id="a3">
-                <img src="img/صور/3.png" width="300px">
-                <div class="button-top">المحاضرة الثالثة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        
-            <button onclick="document.location='pdf/ريادة اعمال 4.pdf'" type="button" class="button" id="a4">
-                <img src="img/صور/4.png" width="300px">
-                <div class="button-top">المحاضرة الرابعة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/ريادة اعمال 5.pdf'" type="button" class="button" id="a5">
-                <img src="img/صور/5.png" width="300px">
-                <div class="button-top">المحاضرةالخامسة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/ريادة اعمال 6.pdf'" type="button" class="button" id="a6">
-                <img src="img/صور/6.png" width="300px">
-                <div class="button-top">المحاضرة السادسة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/ريادة اعمال 7.pdf'" type="button" class="button" id="a7">
-                <img src="img/صور/7.png" width="300px">
-                <div class="button-top">المحاضرة السابعة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/ريادة اعمال 8.pdf'" type="button" class="button" id="a8">
-                <img src="img/صور/8.png" width="300px">
-                <div class="button-top">المحاضرة الثامنة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/ريادة اعمال 9.pdf'" type="button" class="button" id="a9">
-                <img src="img/صور/9.png" width="300px">
-                <div class="button-top">المحاضرة التاسعة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/ريادة اعمال 10.pdf'" type="button" class="button" id="a10">
-                <img src="img/صور/10.png" width="300px">
-                <div class="button-top">المحاضرة العاشرة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/ريادة اعمال 11.pdf'" type="button" class="button" id="a11">
-                <img src="img/صور/م.png" width="300px">
-                <div class="button-top">مراجعة الميد ترم
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/ريادة اعمال 12.pdf'" type="button" class="button" id="a12">
-                <img src="img/صور/ن.png" width="300px">
-                <div class="button-top">المراجعة النهائية
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-             <button onclick="document.location='./a-3.html'" type="button" class="button" id="a-3">
-                <img src="img/pen.png" width="300px">
-                <div class="button-top">السكاشن
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        </div>
-        
-        
-        
-        
-        <br><br><br><br><br>
-        <p>copyeight &copy; 2023 Abdelwahab Ahmed  </p>   
-        
-        
-       
-    </div>
+  <div class="tree-container">
+    <svg id="tree" viewBox="0 0 1200 1100" preserveAspectRatio="xMidYMin meet">
+      <!-- الجذع -->
+      <rect x="580" y="850" width="40" height="200" class="root"></rect>
+      <!-- الجذور -->
+      <path d="M580 1050 C560 1080, 600 1080, 580 1110" stroke="#5d4037" stroke-width="6" fill="none"/>
+      <path d="M620 1050 C640 1080, 600 1080, 620 1110" stroke="#5d4037" stroke-width="6" fill="none"/>
+
+      <text x="600" y="830" text-anchor="middle" class="label show">📘 تحليل الاعمال والتنقيب في البيانات</text>
+    </svg>
+  </div>
+  <br><br><br><br><br>
+  <p>copyeight &copy; 2023 Abdelwahab Ahmed  </p>   
+  <script>
+    const lectures = [
+      { title: "المحاضرة 1", link: "./pdf/قواعد بيانات 1.pdf", icon: "📖" },
+      { title: "المحاضرة 2", link: "", icon: "📖" },
+      { title: "المحاضرة 3", link: "#", icon: "📖" },
+      { title: "المحاضرة 4", link: "#", icon: "📖" },
+      { title: "المحاضرة 5", link: "#", icon: "📖" },
+      { title: "المحاضرة 6", link: "#", icon: "📖" },
+      { title: "المحاضرة 7", link: "#", icon: "📖" },
+      { title: "المحاضرة 8", link: "#", icon: "📖" },
+      { title: "المحاضرة 9", link: "#", icon: "📖" },
+      { title: "المحاضرة 10", link: "#", icon: "📖" },
+      { title: "مراجعة الميدترم", link: "#", icon: "📝" },
+      { title: "المراجعة النهائية", link: "#", icon: "🎯" }
+    ];
+
+    const svg = document.getElementById("tree");
+    const centerX = 600, startY = 850;
+    const offsetY = 70;
+
+    function addLeaf(x, y, delay) {
+      const leaf = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+      const rx = Math.random() * 8 + 4;
+      const ry = rx / 2;
+      leaf.setAttribute("cx", x + (Math.random() * 40 - 20));
+      leaf.setAttribute("cy", y + (Math.random() * 30 - 15));
+      leaf.setAttribute("rx", rx);
+      leaf.setAttribute("ry", ry);
+      leaf.setAttribute("class", "leaf");
+      svg.appendChild(leaf);
+      setTimeout(() => leaf.classList.add("show"), delay);
+    }
+
+    lectures.forEach((lec, i) => {
+      const side = i % 2 === 0 ? 1 : -1;
+      const level = Math.floor(i / 2) + 1;
+      const offsetX = 220 * side;
+      const offsetYtotal = level * offsetY;
+
+      const x = centerX + offsetX;
+      const y = startY - offsetYtotal;
+
+      // فرع منحني
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      const midX = centerX + offsetX / 2;
+      path.setAttribute("d", `M${centerX},${startY - (level - 1) * offsetY} Q${midX},${y} ${x},${y}`);
+      path.setAttribute("class", "branch");
+      path.style.animationDelay = `${i * 0.4}s`;
+      svg.appendChild(path);
+
+      // العقدة
+      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      g.setAttribute("class", "node");
+      if (lec.title.includes("ميدترم")) g.classList.add("midterm");
+      if (lec.title.includes("النهائية")) g.classList.add("final");
+
+      g.addEventListener("click", () => window.open(lec.link, "_blank"));
+
+      const icon = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      icon.setAttribute("x", x);
+      icon.setAttribute("y", y + 5);
+      icon.setAttribute("text-anchor", "middle");
+      icon.setAttribute("class", "icon");
+      icon.textContent = lec.icon;
+      g.appendChild(icon);
+
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", x);
+      text.setAttribute("y", y + 30);
+      text.setAttribute("class", "label");
+      text.textContent = lec.title;
+      g.appendChild(text);
+
+      svg.appendChild(g);
+
+      setTimeout(() => {
+        g.classList.add("show");
+        icon.classList.add("show");
+        text.classList.add("show");
+      }, (i + 1) * 400);
+
+      // أوراق صغيرة حول كل عقدة
+      for (let j = 0; j < 3; j++) {
+        addLeaf(x, y, (i + 1) * 500 + j * 200);
+      }
+    });
+
+    // فرع السكاشن
+    const secX = centerX + 350;
+    const secY = startY - 150;
+
+    const secPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    secPath.setAttribute("d", `M${centerX},${startY} Q${centerX+200},${secY+100} ${secX},${secY}`);
+    secPath.setAttribute("class", "branch");
+    svg.appendChild(secPath);
+
+    const secG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    secG.setAttribute("class", "node section-node");
+     // 🟢 هنا اللينك
+     secG.addEventListener("click", () => {
+      window.open("a-3.html", "_blank"); // غير sections.html للصفحة اللي عايزها
+    });
+
+    const secIcon = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    secIcon.setAttribute("x", secX);
+    secIcon.setAttribute("y", secY + 5);
+    secIcon.setAttribute("text-anchor", "middle");
+    secIcon.setAttribute("class", "icon");
+    secIcon.textContent = "🌿";
+    secG.appendChild(secIcon);
+
+    const secText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    secText.setAttribute("x", secX);
+    secText.setAttribute("y", secY + 30);
+    secText.setAttribute("class", "label");
+    secText.textContent = "السكاشن";
+    secG.appendChild(secText);
+
+    svg.appendChild(secG);
+
+    setTimeout(() => {
+      secG.classList.add("show");
+      secIcon.classList.add("show");
+      secText.classList.add("show");
+    }, (lectures.length + 1) * 400);
+
+    // أوراق حول السكاشن
+    for (let j = 0; j < 5; j++) {
+      addLeaf(secX, secY, (lectures.length + 2) * 400 + j * 200);
+    }
+  </script>
 </body>
 </html>
