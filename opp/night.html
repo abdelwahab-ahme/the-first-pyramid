@@ -1,24 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/ايقونة.ico" type="image/x-icon">
-    <title>The First Pyramid</title>
-    <link rel="stylesheet" href="night.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/ايقونة.ico" type="image/x-icon">
+  <title>The First Pyramid</title>
+  <style>
+    * {margin:0;padding:0;box-sizing:border-box}
+    body {
+      background: linear-gradient(#200016, #10001f);
+      font-family: system-ui;
+      color: #fff;
+      min-height: 200vh; /* علشان في Scroll */
+    }
+    a {text-decoration:none;color:#fff}
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
+    }
+    header .logo {font-size: 28px;font-weight:bold}
+    header ul {display:flex;list-style:none;gap:20px}
+    header ul li a {padding:6px 15px;border-radius:20px;transition:0.3s}
+    header ul li a:hover, .active {background:#fff;color:#200016}
+    .menu-toggle {display:none;font-size:26px;cursor:pointer;background:none;border:none;color:#fff}
+    
+    .main {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      text-align: center;
+    }
+    .main::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      height: 100px;
+      width: 100%;
+      background: linear-gradient(to top, #200016, transparent);
+    }
+    .main img {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
+    .hagag {
+      position: relative;
+      z-index: 2;
+      font-size: 30px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .contant {
+      padding: 100px 40px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+    .button {border:none;background:transparent;cursor:pointer;max-width:300px;width:100%}
+    .button img {width:100%;border-radius:10px}
+    .button-top {display:block;text-align:center;margin-top:10px;font-weight:bold}
+    
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+    .footer-section {max-width:250px}
+    .footer-bottom {border-top:1px solid #444;padding-top:10px;font-size:14px}
+    
+    @media (max-width:768px){
+      header ul {
+        display:none;flex-direction:column;
+        background:rgba(0,0,0,0.9);
+        position:absolute;top:60px;right:20px;
+        width:200px;border-radius:10px;padding:15px
+      }
+      header ul.show {display:flex}
+      .menu-toggle{display:block}
+      .hagag{font-size:20px}
+      .contant{padding:40px 20px;flex-direction:column}
+    }
+  </style>
 </head>
 <body>
-<header>
+  <header>
     <h2><a href="#" class="logo">hagag</a></h2>
-    <ul>
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#WorkingProcess">Product</a></li>
-        <li><a onclick="document.location='./XO.html'">Shop</a></li>
-        <li><a href="#footer">About</a></li>
-        <li><a href="#conect">Contact</a></li>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <ul id="navMenu">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#WorkingProcess">Product</a></li>
+      <li><a onclick="document.location='./XO.html'">Shop</a></li>
+      <li><a href="#footer">About</a></li>
+      <li><a href="#conect">Contact</a></li>
     </ul>
-</header>
-<section class="main">
+  </header>
+
+  <section class="main">
     <img src="imags/stars1.webp" id="stars">
     <h2 class="hagag">hagag</h2>
     <img src="imags/moon2.webp" id="moon">
@@ -26,99 +124,79 @@
     <img src="imags/mountains4.webp" id="mountains4">
     <img src="imags/river5.webp" id="river">
     <img src="imags/boat6.webp" id="boat">
-    <img src="imags/mountains7.webp" id="mountains7" >
-</section>
-<div class="buttons-container">
-<div class="contant">
-    <div id="WorkingProcess">
-    
-        <button onclick="document.location='./a1.html'" type="button" class="button" id="a1">
-           <img src="img/blog-item-02.png" width="300px">
-            <span class="button-top">الاحصاء التطبيقي
-            </span>
-            <span class="button-bottom"></span>
-            <span class="button-base"></span>
-        </button>
-    
-        <button onclick="document.location='./a2.html'" type="button" class="button" id="a2">
-            <img src="img/blog-item-01.png" width="300px">
-            <span class="button-top">انظمة معلومات المؤسسات
-            </span>
-            <span class="button-bottom"></span>
-            <span class="button-base"></span>
-        </button>
-    
-        <button onclick="document.location='./a3.html'" type="button" class="button" id="a3">
-            <img src="img/blog-item-03.png" width="300px">
-            <span class="button-top">تحليلات الاعمال والتنقيب في البيانات
-            </span>
-            <span class="button-bottom"></span>
-            <span class="button-base"></span>
-        </button>
-    
-        <button onclick="document.location='./a4.html'" type="button" class="button" id="a4">
-            <img src="img/download.png" width="300px">
-            <span class="button-top">تطبيقات في برمجة الحاسب
-            </span>
-            <span class="button-bottom"></span>
-            <span class="button-base"></span>
-        </button>
-        <button onclick="document.location='./a5.html'" type="button" class="button" id="a5">
-            <img src="img/download2.jpeg" width="300px">
-            <span class="button-top">مبادئ الاعمال الالكترونية
-            </span>
-            <span class="button-bottom"></span>
-            <span class="button-base"></span>
-        </button>
+    <img src="imags/mountains7.webp" id="mountains7">
+  </section>
 
-        <!-- <button onclick="document.location='./a6.html'" type="button" class="button" id="a6">
-            <img src="img\اقتصاد.jpg" width="300px">
-            <span class="button-top">اقتصاد كلي
-            </span>
-            <span class="button-bottom"></span>
-            <span class="button-base"></span>
-        </button> -->
-    
+  <div class="contant" id="WorkingProcess">
+    <button onclick="document.location='./a1.html'" class="button">
+      <img src="img/blog-item-02.png" alt="">
+      <span class="button-top">الاحصاء التطبيقي</span>
+    </button>
+    <button onclick="document.location='./a2.html'" class="button">
+      <img src="img/blog-item-01.png" alt="">
+      <span class="button-top">انظمة معلومات المؤسسات</span>
+    </button>
+    <button onclick="document.location='./a3.html'" class="button">
+      <img src="img/blog-item-03.png" alt="">
+      <span class="button-top">تحليلات الاعمال والتنقيب في البيانات</span>
+    </button>
+    <button onclick="document.location='./a4.html'" class="button">
+      <img src="img/download.png" alt="">
+      <span class="button-top">تطبيقات في برمجة الحاسب</span>
+    </button>
+    <button onclick="document.location='./a5.html'" class="button">
+      <img src="img/download2.jpeg" alt="">
+      <span class="button-top">مبادئ الاعمال الالكترونية</span>
+    </button>
+  </div>
+
+  <footer id="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>من نحن</h3>
+        <p>نحن شركة متخصصة في تطوير مواقع الويب وتقديم حلول تقنية متكاملة.</p>
+      </div>
+      <div class="footer-section">
+        <h3>تواصل معنا</h3>
+        <p>📧 <a href="mailto:abdelwahabhagag3@gmail.com">abdelwahabhagag3@gmail.com</a></p>
+        <p>📞 <a href="tel:+201286865533">+201286865533</a></p>
+        <p>📍 العنوان: الهرم الاول، القاهرة، مصر</p>
+      </div>
+      <div class="footer-section">
+        <h3>معلومات عنا</h3>
+        <p>هدفنا تقديم أفضل الخدمات التقنية لعملائنا ومساعدتهم على النجاح في أعمالهم الرقمية.</p>
+      </div>
     </div>
-</div>
-</div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-   
-  <!-- قسم "معلومات عني" و "تواصل معي" في أسفل الصفحة -->
-     <footer>
-        <div class="footer-container" id="footer">
-            <div class="footer-section" id="about-us">
-                <h3>من نحن</h3><br>
-                <p>نحن شركة متخصصة في تطوير مواقع الويب وتقديم حلول تقنية متكاملة.</p>
-            </div>
-            <div class="footer-section" id="contact">
-                <h3>تواصل معنا</h3><br>
-                <p>📧 <a href="mailto:abdelwahabhagag3@gmail.com">abdelwahabhagag3@gmail.com</a></p>
-                <p>📞 <a href="tel:+201286865533">+201286865533</a></p>
-                <p>📍 العنوان: الهرم الاول، القاهرة، مصر</p>
-            </div>
-            <div class="footer-section" id="info">
-                <h3>معلومات عنا</h3><br>
-                <p>هدفنا تقديم أفضل الخدمات التقنية لعملائنا ومساعدتهم على النجاح في أعمالهم الرقمية.</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2023 جميع الحقوق محفوظة | عبدالوهاب حجاج
-        </div>
-    </footer>
-    
-    
-  
-    <!-- <p>copyeight &copy; 2023 Abdelwahab Ahmed  </p>    -->
-   
-    
-   
+    <div class="footer-bottom">
+      &copy; 2023 جميع الحقوق محفوظة | عبدالوهاب حجاج
+    </div>
+  </footer>
 
+  <script>
+    // فتح/غلق المنيو
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("show");
+    }
 
-    <script src="night.js"></script>
+    // Parallax Animation
+    let stars = document.getElementById("stars");
+    let moon = document.getElementById("moon");
+    let mountains3 = document.getElementById("mountains3");
+    let mountains4 = document.getElementById("mountains4");
+    let river = document.getElementById("river");
+    let boat = document.getElementById("boat");
+    let mountains7 = document.getElementById("mountains7");
+
+    window.addEventListener("scroll", () => {
+      let value = window.scrollY;
+      stars.style.transform = `translateY(${value * 0.3}px)`;
+      moon.style.transform = `translateY(${value * 0.8}px)`;
+      mountains3.style.transform = `translateY(${value * 0.5}px)`;
+      mountains4.style.transform = `translateY(${value * 0.3}px)`;
+      river.style.transform = `translateY(${value * 0.2}px)`;
+      boat.style.transform = `translate(${value * 0.5}px, ${value * 0.2}px)`;
+      mountains7.style.transform = `translateY(${value * 0.1}px)`;
+    });
+  </script>
 </body>
 </html>
