@@ -192,3 +192,78 @@ header ul li a:hover, .active{
     padding: 15px;
     font-size: 14px;
 }
+/* ===== تحسين الموبايل ===== */
+@media (max-width: 768px) {
+    header {
+        margin: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header ul {
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 200px;
+        display: none; /* افتراضي مخفية */
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    header ul li {
+        margin: 10px 0;
+    }
+
+    header ul li a {
+        display: block;
+        text-align: center;
+    }
+
+    /* النص الرئيسي */
+    .hagag {
+        font-size: 18px;
+        text-align: center;
+        transform: translateY(-100px);
+    }
+
+    /* الصور الرئيسية */
+    .main img {
+        height: auto;
+    }
+
+    /* الأزرار */
+    .contant {
+        padding: 40px 20px;
+        flex-direction: column;
+    }
+
+    .button img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    /* الفوتر */
+    footer {
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+/* شاشات صغيرة جداً (موبايل تحت 480px) */
+@media (max-width: 480px) {
+    header .logo {
+        font-size: 22px;
+    }
+
+    .hagag {
+        font-size: 16px;
+    }
+
+    .button img {
+        max-width: 150px;
+    }
+}
+
+
