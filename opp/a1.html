@@ -131,16 +131,17 @@
         justify-content: center;
       }
       .tree-container {
-        margin-top: 180px;
+        margin-top: 140px;
+        padding: 0;
       }
 
       /* تكبير الشجرة على الموبايل */
       svg {
-        width: 100%;
-        height: auto;
+        width: 100vw;   /* بعرض الشاشة */
+        height: 100vh;  /* بارتفاع الشاشة */
       }
-      .node text.icon { font-size: 70px; }
-      .label { font-size: 26px; }
+      .node text.icon { font-size: 90px; }
+      .label { font-size: 32px; }
     }
   </style>
 </head>
@@ -154,9 +155,9 @@
   </header>
 
   <div class="tree-container">
-    <svg id="tree" viewBox="0 0 1400 1300" preserveAspectRatio="xMidYMin meet">
+    <svg id="tree" viewBox="0 0 1400 1600" preserveAspectRatio="xMidYMid meet">
       <!-- اسم المادة فوق -->
-      <text x="700" y="120" text-anchor="middle" class="label show" style="font-size:32px;fill:#ffeb3b;">
+      <text x="700" y="120" text-anchor="middle" class="label show" style="font-size:38px;fill:#ffeb3b;">
         📘 الاحصاء التطبيقي
       </text>
 
@@ -189,7 +190,7 @@
 
     const svg = document.getElementById("tree");
     const centerX = 700, startY = 950;
-    const offsetY = 80;
+    const offsetY = 100; // زودت المسافة بين الفروع
 
     function addLeaf(x, y, delay) {
       const leaf = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
@@ -239,7 +240,7 @@
       // النص فوق الأيقونة
       const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
       text.setAttribute("x", x);
-      text.setAttribute("y", y - 15);
+      text.setAttribute("y", y - 25);
       text.setAttribute("class", "label");
       text.textContent = lec.title;
       g.appendChild(text);
@@ -280,7 +281,7 @@
 
     const secText = document.createElementNS("http://www.w3.org/2000/svg", "text");
     secText.setAttribute("x", secX);
-    secText.setAttribute("y", secY - 15);
+    secText.setAttribute("y", secY - 25);
     secText.setAttribute("class", "label");
     secText.textContent = "السكاشن";
     secG.appendChild(secText);
