@@ -58,14 +58,14 @@
 
     /* ===== الشجرة ===== */
     .tree-container {
-      margin-top: 120px; /* مسافة للهيدر */
+      margin-top: 160px; /* عشان الهيدر */
       padding: 10px;
       display: flex;
       justify-content: center;
     }
     svg {
       max-width: 1200px;
-      width: 90%;
+      width: 95%;
       height: auto;
     }
 
@@ -77,7 +77,7 @@
     .node.show { transform: scale(1); }
 
     .node text.icon {
-      font-size: 36px; /* افتراضي */
+      font-size: 36px;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.5s ease, transform 0.3s ease;
@@ -131,7 +131,7 @@
         justify-content: center;
       }
       .tree-container {
-        margin-top: 150px;
+        margin-top: 180px;
       }
 
       /* تكبير الشجرة على الموبايل */
@@ -139,8 +139,8 @@
         width: 100%;
         height: auto;
       }
-      .node text.icon { font-size: 60px; }
-      .label { font-size: 22px; }
+      .node text.icon { font-size: 70px; }
+      .label { font-size: 26px; }
     }
   </style>
 </head>
@@ -154,13 +154,18 @@
   </header>
 
   <div class="tree-container">
-    <svg id="tree" viewBox="0 0 1400 1200" preserveAspectRatio="xMidYMin meet">
+    <svg id="tree" viewBox="0 0 1400 1300" preserveAspectRatio="xMidYMin meet">
+      <!-- اسم المادة فوق -->
+      <text x="700" y="120" text-anchor="middle" class="label show" style="font-size:32px;fill:#ffeb3b;">
+        📘 الاحصاء التطبيقي
+      </text>
+
       <!-- الجذع -->
       <rect x="680" y="950" width="40" height="200" class="root"></rect>
+
       <!-- الجذور -->
       <path d="M680 1150 C660 1180, 700 1180, 680 1210" stroke="#5d4037" stroke-width="6" fill="none"/>
       <path d="M720 1150 C740 1180, 700 1180, 720 1210" stroke="#5d4037" stroke-width="6" fill="none"/>
-      <text x="700" y="930" text-anchor="middle" class="label show">📘 الاحصاء التطبيقي</text>
     </svg>
   </div>
 
@@ -222,17 +227,19 @@
 
       g.addEventListener("click", () => window.open(lec.link, "_blank"));
 
+      // الأيقونة
       const icon = document.createElementNS("http://www.w3.org/2000/svg", "text");
       icon.setAttribute("x", x);
-      icon.setAttribute("y", y + 5);
+      icon.setAttribute("y", y + 20);
       icon.setAttribute("text-anchor", "middle");
       icon.setAttribute("class", "icon");
       icon.textContent = lec.icon;
       g.appendChild(icon);
 
+      // النص فوق الأيقونة
       const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
       text.setAttribute("x", x);
-      text.setAttribute("y", y + 35);
+      text.setAttribute("y", y - 15);
       text.setAttribute("class", "label");
       text.textContent = lec.title;
       g.appendChild(text);
@@ -250,6 +257,7 @@
       }
     });
 
+    // فرع السكاشن
     const secX = centerX + 380;
     const secY = startY - 200;
 
@@ -264,7 +272,7 @@
 
     const secIcon = document.createElementNS("http://www.w3.org/2000/svg", "text");
     secIcon.setAttribute("x", secX);
-    secIcon.setAttribute("y", secY + 5);
+    secIcon.setAttribute("y", secY + 20);
     secIcon.setAttribute("text-anchor", "middle");
     secIcon.setAttribute("class", "icon");
     secIcon.textContent = "🌿";
@@ -272,7 +280,7 @@
 
     const secText = document.createElementNS("http://www.w3.org/2000/svg", "text");
     secText.setAttribute("x", secX);
-    secText.setAttribute("y", secY + 35);
+    secText.setAttribute("y", secY - 15);
     secText.setAttribute("class", "label");
     secText.textContent = "السكاشن";
     secG.appendChild(secText);
