@@ -136,6 +136,29 @@
       .node text.icon { font-size: 28px; }
       .label { font-size: 16px; }
     }
+    .tree {
+  width: 80%;   /* افتراضي للكمبيوتر */
+  max-width: 900px;
+}
+
+/* تنسيق خاص للموبايل */
+@media (max-width: 768px) {
+  .tree {
+    width: 100%;   /* تاخد الشاشة كلها */
+    max-width: 100%;
+  }
+
+  .tree img {
+    width: 100%;   /* الصورة تاخد الشاشة */
+    height: auto;
+  }
+
+  .tree .branch {
+    transform: scale(1.2); /* تكبير الايقونات والفروع */
+    margin: 15px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -285,3 +308,4 @@
   </script>
 </body>
 </html>
+
