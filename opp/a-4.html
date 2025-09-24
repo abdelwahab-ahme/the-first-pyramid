@@ -3,20 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>سكاشن تطبيقات في برمجة الحاسب</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       background: linear-gradient(#200016,#10001f);
       font-family: 'Cairo', sans-serif;
       color: #fff;
       direction: rtl;
-      padding: 40px;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
     }
 
     .tree {
       list-style-type: none;
       position: relative;
       padding-left: 1em;
-      line-height: 2em;
+      line-height: 2.2em;
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     .tree:before {
@@ -40,7 +50,6 @@
       content: "";
       position: absolute;
       top: 1em;
-      right: auto;
       left: 0;
       border-top: 2px solid #ff4fa0;
       width: 1em;
@@ -48,8 +57,9 @@
 
     .tree li span {
       display: inline-block;
-      padding: 6px 14px;
+      padding: 10px 16px;
       border-radius: 12px;
+      font-size: 1.1rem;
       background: linear-gradient(45deg,#cd3f64,#9d3656);
       transition: background 0.3s, transform 0.3s;
     }
@@ -72,28 +82,44 @@
       from {opacity: 0; transform: translateY(-5px);}
       to {opacity: 1; transform: translateY(0);}
     }
-    .back-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #00acc1;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  z-index: 9999;
-}
 
-.back-button:hover {
-  background-color: #00838f;
-  transform: translateY(-2px);
-}
-    
+    .back-button {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #00acc1;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      z-index: 9999;
+      font-size: 0.9rem;
+    }
+
+    .back-button:hover {
+      background-color: #00838f;
+      transform: translateY(-2px);
+    }
+
+    /* ===== ريسبونسيف ===== */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+      .tree li span {
+        font-size: 1rem;
+        padding: 8px 12px;
+      }
+      .back-button {
+        font-size: 0.8rem;
+        padding: 8px 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -116,11 +142,9 @@
         <li><span onclick="openPDF('pdf/قواعد بيانات 10.pdf')">السكشن العاشر</span></li>
         <li><span onclick="openPDF('pdf/قواعد بيانات 11.pdf')">مراجعة الميدترم</span></li>
         <li><span onclick="openPDF('pdf/قواعد بيانات 12.pdf')">المراجعة النهائية</span></li>
-        
       </ul>
     </li>
   </ul>
-
 
   <a href="./night.html" class="back-button" title="العودة إلى الصفحة الرئيسية">
     <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#ffffff">
@@ -129,7 +153,6 @@
     </svg>
     <span>العودة الي الصفحة الرئيسية</span>
   </a>
-  
 
   <script>
     function toggleBranch(element) {
@@ -142,8 +165,7 @@
     }
   </script>
 
-  <br><br>
-  <p style="text-align:center;">copyright &copy; 2023 
+  <p style="text-align:center; margin-top:20px;">copyright &copy; 
     <strong>Abdelwahab Ahmed</strong>
   </p>
 
