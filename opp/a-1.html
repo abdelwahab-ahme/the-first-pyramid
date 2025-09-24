@@ -1,111 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/ايقونة.ico" type="image/x-icon">
-    <title>DataBase</title>
-    <link rel="stylesheet" href="a.css">
+  <meta charset="UTF-8">
+  <title>سكاشن الاحصاء التطبيقي</title>
+  <style>
+    body {
+      background: linear-gradient(#200016,#10001f);
+      font-family: 'Cairo', sans-serif;
+      color: #fff;
+      direction: rtl;
+      padding: 40px;
+    }
+
+    .tree {
+      list-style-type: none;
+      position: relative;
+      padding-left: 1em;
+      line-height: 2em;
+    }
+
+    .tree:before {
+      content: "";
+      border-left: 2px solid #ff4fa0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0.7em;
+    }
+
+    .tree li {
+      margin: 0;
+      padding: 0 0 0 1.5em;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tree li::before {
+      content: "";
+      position: absolute;
+      top: 1em;
+      right: auto;
+      left: 0;
+      border-top: 2px solid #ff4fa0;
+      width: 1em;
+    }
+
+    .tree li span {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 12px;
+      background: linear-gradient(45deg,#cd3f64,#9d3656);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .tree li span:hover {
+      background: linear-gradient(45deg,#ff6f91,#ff9671);
+      transform: scale(1.05);
+    }
+
+    .nested {
+      display: none;
+    }
+
+    .active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-5px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .back-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #00acc1;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 9999;
+}
+
+.back-button:hover {
+  background-color: #00838f;
+  transform: translateY(-2px);
+}
+    
+  </style>
 </head>
 <body>
-    <div class="contant">
-        <div id="WorkingProcess">
+
+  <h1>🌳 شجرة مادة الاحصاء التطبيقي</h1>
+
+  <ul class="tree">
+    <li>
+      <span onclick="toggleBranch(this)">📘 مادة الاحصاء التطبيقي</span>
+      <ul class="nested">
+        <li><span onclick="openPDF('pdf/قواعد بيانات 1.pdf')">السكشن الاول</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 2.pdf')">السكشن الثاني</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 3.pdf')">السكشن الثالث</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 4.pdf')">السكشن الرابع</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 5.pdf')">السكشن الخامس</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 6.pdf')">السكشن السادس</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 7.pdf')">السكشن السابع</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 8.pdf')">السكشن الثامن</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 9.pdf')">السكشن التاسع</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 10.pdf')">السكشن العاشر</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 11.pdf')">مراجعة الميدترم</span></li>
+        <li><span onclick="openPDF('pdf/قواعد بيانات 12.pdf')">المراجعة النهائية</span></li>
         
-            <button onclick="document.location='pdf/معمل قواعد البيانات 1.pdf'" type="button" class="button" id="a1">
-               <img src="img/صور/س1.png" width="300px">
-                <div class="button-top">السكشن الاول
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        
-            <button onclick="document.location='pdf/معمل قواعد البيانات 2.pdf'" type="button" class="button" id="a2">
-                <img src="img/صور/س2.png" width="300px">
-                <div class="button-top">السكشن الثاني
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        
-            <button onclick="document.location='pdf/معمل قواعد البيانات 3.pdf'" type="button" class="button" id="a3">
-                <img src="img/صور/س3.png" width="300px">
-                <div class="button-top">السكشن الثالث
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        
-            <button onclick="document.location='pdf/معمل قواعد البيانات 4.pdf'" type="button" class="button" id="a4">
-                <img src="img/صور/س4.png" width="300px">
-                <div class="button-top">السكشن الرابع
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/معمل قواعد البيانات 5.pdf'" type="button" class="button" id="a5">
-                <img src="img/صور/س5.png" width="300px">
-                <div class="button-top">السكشن الخامس
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/معمل قواعد البيانات 6.pdf'" type="button" class="button" id="a6">
-                <img src="img/صور/س6.png" width="300px">
-                <div class="button-top">السكشن السادس
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/معمل قواعد البيانات 7.pdf'" type="button" class="button" id="a7">
-                <img src="img/صور/س7.png" width="300px">
-                <div class="button-top">السكشن السابع
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/قواعد بيانات 8.pdf'" type="button" class="button" id="a8">
-                <img src="img/صور/س8.png" width="300px">
-                <div class="button-top">السكشن الثامن
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/معمل قواعد البيانات 9.pdf'" type="button" class="button" id="a9">
-                <img src="img/صور/س9.png" width="300px">
-                <div class="button-top">السكشن التاسع
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/معمل قواعد البيانات 10.pdf'" type="button" class="button" id="a10">
-                <img src="img/صور/س10.png" width="300px">
-                <div class="button-top">السكشن العاشر
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/معمل قواعد البيانات 11.pdf'" type="button" class="button" id="a11">
-                <img src="img/صور/ن.png" width="300px">
-                <div class="button-top">مراجعة 
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            
-                
-        </div>
-        
-        
-        
-        
-        <br><br><br><br><br>
-        <div class="footer-bottom">
-            &copy; 2025 جميع الحقوق محفوظة | عبدالوهاب حجاج
-        </div>  
-        
-        
-       
-    </div>
+      </ul>
+    </li>
+  </ul>
+
+
+  <a href="./night.html" class="back-button" title="العودة إلى الصفحة الرئيسية">
+    <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" width="20" fill="#ffffff">
+      <path d="M0 0h24v24H0z" fill="none"/>
+      <path d="M19 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H19v-2z"/>
+    </svg>
+    <span>العودة الي الصفحة الرئيسية</span>
+  </a>
+  
+
+  <script>
+    function toggleBranch(element) {
+      let nested = element.parentElement.querySelector(".nested");
+      nested.classList.toggle("active");
+    }
+
+    function openPDF(link) {
+      window.open(link, "_blank");
+    }
+  </script>
+
+  <br><br>
+  <p style="text-align:center;">copyright &copy; 2023 
+    <strong>Abdelwahab Ahmed</strong>
+  </p>
+
 </body>
 </html>
