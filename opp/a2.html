@@ -227,7 +227,8 @@ iframe{
         <button onclick="changeBackground()">🎨 تغيير الخلفية</button>
         <button onclick="startTimer()">▶ بدء</button>
         <button onclick="resetTimer()">⏹ إعادة</button>
-        <button onclick="goHome()">🏠 الرئيسية</button>
+        <button onclick="window.location.href='night.html'">🏠 الرئيسية</button>
+
     </div>
 </div>
 
@@ -378,17 +379,11 @@ window.onload=function(){
 function toggleSidebar(){
     document.querySelector(".sidebar").classList.toggle("show");
 }
-function goHome(){
-    document.getElementById("pdfContainer").style.display="none";
-    document.getElementById("pdfContainer").innerHTML="";
-    document.getElementById("welcome").style.display="block";
 
-    document.querySelectorAll(".lecture")
-        .forEach(el=>el.classList.remove("active"));
-}
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </body>
 </html>
+
 
