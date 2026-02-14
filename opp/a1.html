@@ -227,6 +227,8 @@ iframe{
         <button onclick="changeBackground()">🎨 تغيير الخلفية</button>
         <button onclick="startTimer()">▶ بدء</button>
         <button onclick="resetTimer()">⏹ إعادة</button>
+        <button onclick="window.location.href='night.html'">🏠 الرئيسية</button>
+
     </div>
 </div>
 
@@ -244,7 +246,7 @@ iframe{
 
 let totalLectures = 3;
 let completedLectures = JSON.parse(localStorage.getItem("completedLectures")) || [];
-let minutes = parseInt(localStorage.getItem("studyTime")) || 0;
+let seconds = parseInt(localStorage.getItem("studyTime")) || 0;
 let timerInterval;
 
 /* تحفيز يومي */
@@ -345,35 +347,42 @@ function changeBackground(){
 /* العداد */
 function startTimer(){
     clearInterval(timerInterval);
-    timerInterval=setInterval(()=>{
-        minutes++;
-        document.getElementById("time").innerText=minutes;
-        localStorage.setItem("studyTime",minutes);
-    },60000);
+    timerInterval = setInterval(()=>{
+        seconds++;
+        updateTimerDisplay();
+        localStorage.setItem("studyTime",seconds);
+    },1000); // كل ثانية
 }
 
 function resetTimer(){
     clearInterval(timerInterval);
-    minutes=0;
-    document.getElementById("time").innerText=0;
+    seconds = 0;
+    updateTimerDisplay();
     localStorage.setItem("studyTime",0);
 }
+
+function updateTimerDisplay(){
+    let mins = Math.floor(seconds / 60);
+    let secs = seconds % 60;
+    document.getElementById("time").innerText =
+        mins + ":" + (secs < 10 ? "0"+secs : secs);
+}
+
 
 /* تحميل البيانات عند الفتح */
 window.onload=function(){
     setDailyQuote();
     updateProgress();
-    document.getElementById("time").innerText=minutes;
+    updateTimerDisplay();
 };
+
 function toggleSidebar(){
     document.querySelector(".sidebar").classList.toggle("show");
 }
+
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </body>
 </html>
-
-
-
 
