@@ -272,6 +272,7 @@ function setDailyQuote(){
 
 /* فتح PDF */
 function openPDF(element,file,index){
+
     document.querySelectorAll(".lecture")
         .forEach(el=>el.classList.remove("active"));
 
@@ -282,10 +283,11 @@ function openPDF(element,file,index){
     let viewer = document.getElementById("viewer");
     viewer.style.display="block";
 
-    /* فتح بدون شريط أدوات */
-    viewer.src = file + "#toolbar=0&navpanes=0&scrollbar=1";
+    /* عرض PDF داخل الموقع على الموبايل */
+    let fullURL = window.location.origin + "/" + file;
 
-    /* يقفل القائمة في الموبايل */
+    viewer.src = "https://docs.google.com/gview?embedded=true&url=" + fullURL;
+
     document.querySelector(".sidebar").classList.remove("show");
 
     if(!completedLectures.includes(index)){
@@ -294,6 +296,7 @@ function openPDF(element,file,index){
         updateProgress();
     }
 }
+
 
 
 /* تحديث التقدم */
@@ -344,5 +347,6 @@ function toggleSidebar(){
 
 </body>
 </html>
+
 
 
