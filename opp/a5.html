@@ -1,303 +1,281 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مبادئ الاعمال الالكترونية</title>
-  <style>
-    body {
-      margin: 0;
-      background: linear-gradient(#200016, #10001f);
-      font-family: 'Cairo', sans-serif;
-      direction: rtl;
-      color: #fff;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<title>Study Hub - Abdelwahab</title>
 
-    /* ===== الهيدر ===== */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px 20px;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(6px);
-    }
-    header h2 {
-      margin: 0;
-    }
-    header .logo {
-      font-size: 26px;
-      text-transform: uppercase;
-      color: #fff;
-      text-decoration: none;
-    }
-    header ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: 20px;
-    }
-    header ul li a {
-      padding: 6px 15px;
-      border-radius: 20px;
-      color: #fff;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    header ul li a:hover,
-    .active {
-      background: #fff;
-      color: #200016;
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
 
-    /* ===== الشجرة ===== */
-    .tree-container {
-      margin-top: 160px;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-    }
-    svg {
-      max-width: 1200px;
-      width: 95%;
-      height: auto;
-    }
+body{
+    display:flex;
+    height:100vh;
+    transition:0.4s;
+}
 
-    .node {
-      cursor: pointer;
-      transform: scale(0);
-      transition: transform 0.5s ease;
-    }
-    .node.show { transform: scale(1); }
+body.dark{
+    background:#0f172a;
+    color:white;
+}
 
-    .node text.icon {
-      font-size: 36px;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.5s ease, transform 0.3s ease;
-    }
-    .node text.icon.show { opacity: 1; }
-    .node:hover text.icon { transform: scale(1.4); }
+body.light{
+    background:#f1f5f9;
+    color:#111;
+}
 
-    .label {
-      font-size: 18px;
-      font-weight: bold;
-      fill: white;
-      text-anchor: middle;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .label.show { opacity: 1; }
+/* Sidebar */
+.sidebar{
+    width:30%;
+    background:#111827;
+    color:white;
+    padding:20px;
+    overflow-y:auto;
+}
 
-    .root { fill: #8d6e63; stroke: #5d4037; }
+.sidebar h2{
+    text-align:center;
+    margin-bottom:15px;
+}
 
-    path.branch {
-      stroke: #5d4037;
-      stroke-width: 4;
-      fill: none;
-      stroke-dasharray: 400;
-      stroke-dashoffset: 400;
-      animation: grow 1.5s forwards;
-    }
-    @keyframes grow { to { stroke-dashoffset: 0; } }
+.quote{
+    background:#1f2937;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:14px;
+    text-align:center;
+}
 
-    .leaf {
-      fill: #66bb6a;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-    .leaf.show { opacity: 1; }
+.lecture{
+    padding:15px;
+    margin-bottom:10px;
+    background:#1f2937;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
 
-    .node.midterm text.icon { font-size: 40px; fill: #ffeb3b; }
-    .node.final text.icon { font-size: 42px; fill: #ff9800; }
-    .section-node text.icon { font-size: 44px; fill: #4caf50; }
-    .section-node .label { font-size: 20px; fill: #a5d6a7; }
+.lecture:hover{
+    background:#2563eb;
+}
 
-    /* ===== ريسبونسيف ===== */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-      }
-      header ul {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .tree-container {
-        margin-top: 120px;
-        padding: 0;
-      }
+.lecture.active{
+    background:#16a34a;
+}
 
-      /* تكبير الشجرة على الموبايل */
-      svg {
-        width: 100vw;
-        height: 100vh;
-      }
-      .node text.icon { font-size: 90px; }
-      .label { font-size: 32px; }
-    }
-  </style>
+/* Progress */
+.progress-container{
+    margin-top:15px;
+}
+
+.progress-bar{
+    width:100%;
+    height:10px;
+    background:#374151;
+    border-radius:5px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#22c55e;
+    transition:0.3s;
+}
+
+/* Timer */
+.timer{
+    margin-top:15px;
+    text-align:center;
+}
+
+/* Buttons */
+.controls{
+    margin-top:15px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+button{
+    padding:8px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#2563eb;
+    color:white;
+}
+
+/* Content */
+.content{
+    width:70%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.tech-bg{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#312e81);
+    z-index:-1;
+}
+
+.tech-bg.alt{
+    background:linear-gradient(135deg,#111827,#0ea5e9,#6366f1);
+}
+
+iframe{
+    width:90%;
+    height:90%;
+    border:none;
+    border-radius:15px;
+    display:none;
+}
+
+.welcome{
+    font-size:26px;
+    text-align:center;
+}
+</style>
 </head>
-<body>
+<body class="dark">
 
-  <header>
-    <h2><a href="./night.html" class="logo">hagag</a></h2>
-    <ul>
-      <li><a href="./night.html" class="active">Home</a></li>
-    </ul>
-  </header>
+<div class="sidebar">
+    <h2>📚 المحاضرات</h2>
 
-  <div class="tree-container">
-    <svg id="tree" viewBox="0 0 1400 1600" preserveAspectRatio="xMidYMid meet">
-      <!-- اسم المادة فوق -->
-      <text x="700" y="120" text-anchor="middle" class="label show" style="font-size:36px;fill:#ffeb3b;">
-        📘 مبادئ الاعمال الالكترونية
-      </text>
+    <div class="quote" id="quoteBox"></div>
 
-      <!-- الجذع -->
-      <rect x="680" y="950" width="40" height="200" class="root"></rect>
+    <!-- <div class="lecture" onclick="openPDF(this,'./pdf/ادرة مخاطر 1.pdf',0)">محاضرة 1</div>
+    <div class="lecture" onclick="openPDF(this,'lecture2.pdf',1)">محاضرة 2</div>
+    <div class="lecture" onclick="openPDF(this,'lecture3.pdf',2)">محاضرة 3</div> -->
 
-      <!-- الجذور -->
-      <path d="M680 1150 C660 1180, 700 1180, 680 1210" stroke="#5d4037" stroke-width="6" fill="none"/>
-      <path d="M720 1150 C740 1180, 700 1180, 720 1210" stroke="#5d4037" stroke-width="6" fill="none"/>
-    </svg>
-  </div>
+    <div class="progress-container">
+        <p>نسبة التقدم</p>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+    </div>
 
-  <p style="text-align:center;margin:30px 0;">copyright &copy; 2023 Abdelwahab Ahmed</p>
+    <div class="timer">
+        ⏱ وقت المذاكرة: <span id="time">0</span> دقيقة
+    </div>
 
-  <script>
-    const lectures = [
-      { title: "المحاضرة 1", link: "./pdf/قواعد بيانات 1.pdf", icon: "📖" },
-      { title: "المحاضرة 2", link: "#", icon: "📖" },
-      { title: "المحاضرة 3", link: "#", icon: "📖" },
-      { title: "المحاضرة 4", link: "#", icon: "📖" },
-      { title: "المحاضرة 5", link: "#", icon: "📖" },
-      { title: "المحاضرة 6", link: "#", icon: "📖" },
-      { title: "المحاضرة 7", link: "#", icon: "📖" },
-      { title: "المحاضرة 8", link: "#", icon: "📖" },
-      { title: "المحاضرة 9", link: "#", icon: "📖" },
-      { title: "المحاضرة 10", link: "#", icon: "📖" },
-      { title: "مراجعة الميدترم", link: "#", icon: "📝" },
-      { title: "المراجعة النهائية", link: "#", icon: "🎯" }
-    ];
+    <div class="controls">
+        <button onclick="toggleMode()">🌙 / ☀ تبديل الوضع</button>
+        <button onclick="changeBackground()">🎨 تغيير الخلفية</button>
+        <button onclick="startTimer()">▶ بدء</button>
+        <button onclick="resetTimer()">⏹ إعادة</button>
+    </div>
+</div>
 
-    const svg = document.getElementById("tree");
-    const centerX = 700, startY = 950;
-    const offsetY = 100; // زودنا المسافات بين الفروع
+<div class="content">
+    <div class="tech-bg" id="bg"></div>
 
-    function addLeaf(x, y, delay) {
-      const leaf = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
-      const rx = Math.random() * 10 + 5;
-      const ry = rx / 2;
-      leaf.setAttribute("cx", x + (Math.random() * 40 - 20));
-      leaf.setAttribute("cy", y + (Math.random() * 30 - 15));
-      leaf.setAttribute("rx", rx);
-      leaf.setAttribute("ry", ry);
-      leaf.setAttribute("class", "leaf");
-      svg.appendChild(leaf);
-      setTimeout(() => leaf.classList.add("show"), delay);
+    <div class="welcome" id="welcome">
+        ابدأ رحلتك النهارده 💻🔥
+    </div>
+
+    <iframe id="viewer"></iframe>
+</div>
+
+<script>
+
+let totalLectures = 3;
+let completedLectures = JSON.parse(localStorage.getItem("completedLectures")) || [];
+let minutes = parseInt(localStorage.getItem("studyTime")) || 0;
+let timerInterval;
+
+/* تحفيز يومي */
+const quotes = [
+"كل صفحة بتقربك من حلمك 🔥",
+"النجاح محتاج التزام مش مزاج 💪",
+"مستقبلك بيتبني دلوقتي ⏳",
+"شد حيلك… التعب مؤقت 👌",
+"أنت قدها 💻🚀"
+];
+
+function setDailyQuote(){
+    let today = new Date().toDateString();
+    let savedDate = localStorage.getItem("quoteDate");
+
+    if(savedDate !== today){
+        let randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
+        localStorage.setItem("dailyQuote",randomQuote);
+        localStorage.setItem("quoteDate",today);
     }
 
-    lectures.forEach((lec, i) => {
-      const side = i % 2 === 0 ? 1 : -1;
-      const level = Math.floor(i / 2) + 1;
-      const offsetX = 260 * side; // المسافة يمين وشمال
-      const offsetYtotal = level * offsetY;
+    document.getElementById("quoteBox").innerText =
+        localStorage.getItem("dailyQuote");
+}
 
-      const x = centerX + offsetX;
-      const y = startY - offsetYtotal;
+/* فتح PDF */
+function openPDF(element,file,index){
+    document.querySelectorAll(".lecture").forEach(el=>el.classList.remove("active"));
+    element.classList.add("active");
 
-      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      const midX = centerX + offsetX / 2;
-      path.setAttribute("d", `M${centerX},${startY - (level - 1) * offsetY} Q${midX},${y} ${x},${y}`);
-      path.setAttribute("class", "branch");
-      path.style.animationDelay = `${i * 0.4}s`;
-      svg.appendChild(path);
+    document.getElementById("welcome").style.display="none";
+    let viewer = document.getElementById("viewer");
+    viewer.style.display="block";
+    viewer.src=file;
 
-      const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      g.setAttribute("class", "node");
-      if (lec.title.includes("ميدترم")) g.classList.add("midterm");
-      if (lec.title.includes("النهائية")) g.classList.add("final");
-
-      g.addEventListener("click", () => window.open(lec.link, "_blank"));
-
-      // الأيقونة
-      const icon = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      icon.setAttribute("x", x);
-      icon.setAttribute("y", y + 20);
-      icon.setAttribute("text-anchor", "middle");
-      icon.setAttribute("class", "icon");
-      icon.textContent = lec.icon;
-      g.appendChild(icon);
-
-      // النص فوق الأيقونة
-      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      text.setAttribute("x", x);
-      text.setAttribute("y", y - 15);
-      text.setAttribute("class", "label");
-      text.textContent = lec.title;
-      g.appendChild(text);
-
-      svg.appendChild(g);
-
-      setTimeout(() => {
-        g.classList.add("show");
-        icon.classList.add("show");
-        text.classList.add("show");
-      }, (i + 1) * 400);
-
-      for (let j = 0; j < 4; j++) {
-        addLeaf(x, y, (i + 1) * 500 + j * 200);
-      }
-    });
-
-    // فرع السكاشن
-    const secX = centerX + 400;
-    const secY = startY - 300;
-
-    const secPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    secPath.setAttribute("d", `M${centerX},${startY} Q${centerX+250},${secY+100} ${secX},${secY}`);
-    secPath.setAttribute("class", "branch");
-    svg.appendChild(secPath);
-
-    const secG = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    secG.setAttribute("class", "node section-node");
-    secG.addEventListener("click", () => window.open("a-.html", "_blank"));
-
-    const secIcon = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    secIcon.setAttribute("x", secX);
-    secIcon.setAttribute("y", secY + 20);
-    secIcon.setAttribute("text-anchor", "middle");
-    secIcon.setAttribute("class", "icon");
-    secIcon.textContent = "🌿";
-    secG.appendChild(secIcon);
-
-    const secText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    secText.setAttribute("x", secX);
-    secText.setAttribute("y", secY - 15);
-    secText.setAttribute("class", "label");
-    secText.textContent = "السكاشن";
-    secG.appendChild(secText);
-
-    svg.appendChild(secG);
-
-    setTimeout(() => {
-      secG.classList.add("show");
-      secIcon.classList.add("show");
-      secText.classList.add("show");
-    }, (lectures.length + 1) * 400);
-
-    for (let j = 0; j < 6; j++) {
-      addLeaf(secX, secY, (lectures.length + 2) * 400 + j * 200);
+    if(!completedLectures.includes(index)){
+        completedLectures.push(index);
+        localStorage.setItem("completedLectures",JSON.stringify(completedLectures));
+        updateProgress();
     }
-  </script>
+}
+
+/* تحديث التقدم */
+function updateProgress(){
+    let percent = (completedLectures.length/totalLectures)*100;
+    document.getElementById("progress").style.width=percent+"%";
+}
+
+/* الوضع */
+function toggleMode(){
+    document.body.classList.toggle("light");
+    document.body.classList.toggle("dark");
+}
+
+/* الخلفية */
+function changeBackground(){
+    document.getElementById("bg").classList.toggle("alt");
+}
+
+/* العداد */
+function startTimer(){
+    clearInterval(timerInterval);
+    timerInterval=setInterval(()=>{
+        minutes++;
+        document.getElementById("time").innerText=minutes;
+        localStorage.setItem("studyTime",minutes);
+    },60000);
+}
+
+function resetTimer(){
+    clearInterval(timerInterval);
+    minutes=0;
+    document.getElementById("time").innerText=0;
+    localStorage.setItem("studyTime",0);
+}
+
+/* تحميل البيانات عند الفتح */
+window.onload=function(){
+    setDailyQuote();
+    updateProgress();
+    document.getElementById("time").innerText=minutes;
+};
+
+</script>
+
 </body>
 </html>
-
