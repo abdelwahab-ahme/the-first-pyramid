@@ -1,114 +1,281 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/ايقونة.ico" type="image/x-icon">
-    <title>Macroeconomics</title>
-    <link rel="stylesheet" href="a.css">
+<meta charset="UTF-8">
+<title>Study Hub - Abdelwahab</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    display:flex;
+    height:100vh;
+    transition:0.4s;
+}
+
+body.dark{
+    background:#0f172a;
+    color:white;
+}
+
+body.light{
+    background:#f1f5f9;
+    color:#111;
+}
+
+/* Sidebar */
+.sidebar{
+    width:30%;
+    background:#111827;
+    color:white;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.quote{
+    background:#1f2937;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:14px;
+    text-align:center;
+}
+
+.lecture{
+    padding:15px;
+    margin-bottom:10px;
+    background:#1f2937;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.lecture:hover{
+    background:#2563eb;
+}
+
+.lecture.active{
+    background:#16a34a;
+}
+
+/* Progress */
+.progress-container{
+    margin-top:15px;
+}
+
+.progress-bar{
+    width:100%;
+    height:10px;
+    background:#374151;
+    border-radius:5px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    width:0%;
+    background:#22c55e;
+    transition:0.3s;
+}
+
+/* Timer */
+.timer{
+    margin-top:15px;
+    text-align:center;
+}
+
+/* Buttons */
+.controls{
+    margin-top:15px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+button{
+    padding:8px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#2563eb;
+    color:white;
+}
+
+/* Content */
+.content{
+    width:70%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.tech-bg{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#312e81);
+    z-index:-1;
+}
+
+.tech-bg.alt{
+    background:linear-gradient(135deg,#111827,#0ea5e9,#6366f1);
+}
+
+iframe{
+    width:90%;
+    height:90%;
+    border:none;
+    border-radius:15px;
+    display:none;
+}
+
+.welcome{
+    font-size:26px;
+    text-align:center;
+}
+</style>
 </head>
-<body>
-    <div class="contant">
-        <div id="WorkingProcess">
-        
-            <button onclick="document.location='pdf/اقتصاد كلي 1.pdf'" type="button" class="button" id="a1">
-               <img src="img/صور/1.png" width="300px">
-                <div class="button-top">المحاضرة الاولي
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        
-            <button onclick="document.location='pdf/اقتصاد كلي 2.pdf'" type="button" class="button" id="a2">
-                <img src="img/صور/2.png" width="300px">
-                <div class="button-top">المحاضرة الثانية
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        
-            <button onclick="document.location='pdf/اقتصاد كلي 3.pdf'" type="button" class="button" id="a3">
-                <img src="img/صور/3.png" width="300px">
-                <div class="button-top">المحاضرة الثالثة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-        
-            <button onclick="document.location='pdf/اقتصاد كلي 4.pdf'" type="button" class="button" id="a4">
-                <img src="img/صور/4.png" width="300px">
-                <div class="button-top">المحاضرة الرابعة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/اقتصاد كلي 5.pdf'" type="button" class="button" id="a5">
-                <img src="img/صور/5.png" width="300px">
-                <div class="button-top">المحاضرةالخامسة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/اقتصاد كلي 6.pdf'" type="button" class="button" id="a6">
-                <img src="img/صور/6.png" width="300px">
-                <div class="button-top">المحاضرة السادسة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/اقتصاد كلي 7.pdf'" type="button" class="button" id="a7">
-                <img src="img/صور/7.png" width="300px">
-                <div class="button-top">المحاضرة السابعة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/اقتصاد كلي 8.pdf'" type="button" class="button" id="a8">
-                <img src="img/صور/8.png" width="300px">
-                <div class="button-top">المحاضرة الثامنة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/اقتصاد كلي 9.pdf'" type="button" class="button" id="a9">
-                <img src="img/صور/9.png" width="300px">
-                <div class="button-top">المحاضرة التاسعة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/اقتصاد كلي 10.pdf'" type="button" class="button" id="a10">
-                <img src="img/صور/10.png" width="300px">
-                <div class="button-top">المحاضرة العاشرة
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/اقتصاد كلي 11.pdf'" type="button" class="button" id="a11">
-                <img src="img/صور/م.png" width="300px">
-                <div class="button-top">مراجعة الميد ترم
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
-            <button onclick="document.location='pdf/اقتصاد كلي 12.pdf'" type="button" class="button" id="a12">
-                <img src="img/صور/ن.png" width="300px">
-                <div class="button-top">المراجعة النهائية
-                     </div>
-                <div class="button-bottom"></div>
-                <div class="button-base"></div>
-            </button>
+<body class="dark">
+
+<div class="sidebar">
+    <h2>📚 المحاضرات</h2>
+
+    <div class="quote" id="quoteBox"></div>
+
+    <!-- <div class="lecture" onclick="openPDF(this,'./pdf/ادرة مخاطر 1.pdf',0)">محاضرة 1</div>
+    <div class="lecture" onclick="openPDF(this,'lecture2.pdf',1)">محاضرة 2</div>
+    <div class="lecture" onclick="openPDF(this,'lecture3.pdf',2)">محاضرة 3</div> -->
+
+    <div class="progress-container">
+        <p>نسبة التقدم</p>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
         </div>
-        
-        
-        
-        
-        <br><br><br><br><br>
-        <p>copyeight &copy; 2023 Abdelwahab Ahmed  </p>   
-        
-        
-       
     </div>
+
+    <div class="timer">
+        ⏱ وقت المذاكرة: <span id="time">0</span> دقيقة
+    </div>
+
+    <div class="controls">
+        <button onclick="toggleMode()">🌙 / ☀ تبديل الوضع</button>
+        <button onclick="changeBackground()">🎨 تغيير الخلفية</button>
+        <button onclick="startTimer()">▶ بدء</button>
+        <button onclick="resetTimer()">⏹ إعادة</button>
+    </div>
+</div>
+
+<div class="content">
+    <div class="tech-bg" id="bg"></div>
+
+    <div class="welcome" id="welcome">
+        ابدأ رحلتك النهارده 💻🔥
+    </div>
+
+    <iframe id="viewer"></iframe>
+</div>
+
+<script>
+
+let totalLectures = 3;
+let completedLectures = JSON.parse(localStorage.getItem("completedLectures")) || [];
+let minutes = parseInt(localStorage.getItem("studyTime")) || 0;
+let timerInterval;
+
+/* تحفيز يومي */
+const quotes = [
+"كل صفحة بتقربك من حلمك 🔥",
+"النجاح محتاج التزام مش مزاج 💪",
+"مستقبلك بيتبني دلوقتي ⏳",
+"شد حيلك… التعب مؤقت 👌",
+"أنت قدها 💻🚀"
+];
+
+function setDailyQuote(){
+    let today = new Date().toDateString();
+    let savedDate = localStorage.getItem("quoteDate");
+
+    if(savedDate !== today){
+        let randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
+        localStorage.setItem("dailyQuote",randomQuote);
+        localStorage.setItem("quoteDate",today);
+    }
+
+    document.getElementById("quoteBox").innerText =
+        localStorage.getItem("dailyQuote");
+}
+
+/* فتح PDF */
+function openPDF(element,file,index){
+    document.querySelectorAll(".lecture").forEach(el=>el.classList.remove("active"));
+    element.classList.add("active");
+
+    document.getElementById("welcome").style.display="none";
+    let viewer = document.getElementById("viewer");
+    viewer.style.display="block";
+    viewer.src=file;
+
+    if(!completedLectures.includes(index)){
+        completedLectures.push(index);
+        localStorage.setItem("completedLectures",JSON.stringify(completedLectures));
+        updateProgress();
+    }
+}
+
+/* تحديث التقدم */
+function updateProgress(){
+    let percent = (completedLectures.length/totalLectures)*100;
+    document.getElementById("progress").style.width=percent+"%";
+}
+
+/* الوضع */
+function toggleMode(){
+    document.body.classList.toggle("light");
+    document.body.classList.toggle("dark");
+}
+
+/* الخلفية */
+function changeBackground(){
+    document.getElementById("bg").classList.toggle("alt");
+}
+
+/* العداد */
+function startTimer(){
+    clearInterval(timerInterval);
+    timerInterval=setInterval(()=>{
+        minutes++;
+        document.getElementById("time").innerText=minutes;
+        localStorage.setItem("studyTime",minutes);
+    },60000);
+}
+
+function resetTimer(){
+    clearInterval(timerInterval);
+    minutes=0;
+    document.getElementById("time").innerText=0;
+    localStorage.setItem("studyTime",0);
+}
+
+/* تحميل البيانات عند الفتح */
+window.onload=function(){
+    setDailyQuote();
+    updateProgress();
+    document.getElementById("time").innerText=minutes;
+};
+
+</script>
+
 </body>
 </html>
