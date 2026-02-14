@@ -2,6 +2,7 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Study Hub - Abdelwahab</title>
 
 <style>
@@ -145,16 +146,68 @@ iframe{
     font-size:26px;
     text-align:center;
 }
+/* ======== زر القائمة للموبايل ======== */
+.menu-btn{
+    display:none;
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    z-index:1000;
+}
+
+/* ======== Responsive ======== */
+@media(max-width:768px){
+
+    body{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        position:fixed;
+        width:75%;
+        height:100%;
+        left:-100%;
+        top:0;
+        z-index:999;
+        transition:0.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    .content{
+        width:100%;
+        height:100vh;
+    }
+
+    iframe{
+        width:100%;
+        height:100%;
+        border-radius:0;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+}
+
 </style>
 </head>
 <body class="dark">
+<button class="menu-btn" onclick="toggleSidebar()">☰</button>
 
 <div class="sidebar">
     <h2>📚 المحاضرات</h2>
 
     <div class="quote" id="quoteBox"></div>
 
-    <!-- <div class="lecture" onclick="openPDF(this,'./pdf/ادرة مخاطر 1.pdf',0)">محاضرة 1</div>
+   <!-- <div class="lecture" onclick="openPDF(this,'./pdf/استراتيجية 1.pdf',0)">محاضرة 1</div>
     <div class="lecture" onclick="openPDF(this,'lecture2.pdf',1)">محاضرة 2</div>
     <div class="lecture" onclick="openPDF(this,'lecture3.pdf',2)">محاضرة 3</div> -->
 
@@ -174,6 +227,8 @@ iframe{
         <button onclick="changeBackground()">🎨 تغيير الخلفية</button>
         <button onclick="startTimer()">▶ بدء</button>
         <button onclick="resetTimer()">⏹ إعادة</button>
+        <button onclick="window.location.href='night.html'">🏠 الرئيسية</button>
+
     </div>
 </div>
 
@@ -184,14 +239,14 @@ iframe{
         ابدأ رحلتك النهارده 💻🔥
     </div>
 
-    <iframe id="viewer"></iframe>
+    <div id="pdfContainer" style="width:100%;height:100%;overflow:auto;display:none;"></div>
 </div>
 
 <script>
 
 let totalLectures = 3;
 let completedLectures = JSON.parse(localStorage.getItem("completedLectures")) || [];
-let minutes = parseInt(localStorage.getItem("studyTime")) || 0;
+let seconds = parseInt(localStorage.getItem("studyTime")) || 0;
 let timerInterval;
 
 /* تحفيز يومي */
@@ -219,13 +274,48 @@ function setDailyQuote(){
 
 /* فتح PDF */
 function openPDF(element,file,index){
-    document.querySelectorAll(".lecture").forEach(el=>el.classList.remove("active"));
+
+    document.querySelectorAll(".lecture")
+        .forEach(el=>el.classList.remove("active"));
+
     element.classList.add("active");
 
     document.getElementById("welcome").style.display="none";
-    let viewer = document.getElementById("viewer");
-    viewer.style.display="block";
-    viewer.src=file;
+
+    const container = document.getElementById("pdfContainer");
+    container.style.display = "block";
+    container.innerHTML = "";
+
+    const loadingTask = pdfjsLib.getDocument(file);
+
+    loadingTask.promise.then(function(pdf) {
+
+        for(let pageNum = 1; pageNum <= pdf.numPages; pageNum++){
+
+            pdf.getPage(pageNum).then(function(page){
+
+                const scale = 1.2;
+                const viewport = page.getViewport({scale: scale});
+
+                const canvas = document.createElement("canvas");
+                const context = canvas.getContext("2d");
+
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                canvas.style.width = "100%";
+                canvas.style.marginBottom = "10px";
+
+                container.appendChild(canvas);
+
+                page.render({
+                    canvasContext: context,
+                    viewport: viewport
+                });
+            });
+        }
+    });
+
+    document.querySelector(".sidebar").classList.remove("show");
 
     if(!completedLectures.includes(index)){
         completedLectures.push(index);
@@ -233,6 +323,9 @@ function openPDF(element,file,index){
         updateProgress();
     }
 }
+
+
+
 
 /* تحديث التقدم */
 function updateProgress(){
@@ -254,28 +347,41 @@ function changeBackground(){
 /* العداد */
 function startTimer(){
     clearInterval(timerInterval);
-    timerInterval=setInterval(()=>{
-        minutes++;
-        document.getElementById("time").innerText=minutes;
-        localStorage.setItem("studyTime",minutes);
-    },60000);
+    timerInterval = setInterval(()=>{
+        seconds++;
+        updateTimerDisplay();
+        localStorage.setItem("studyTime",seconds);
+    },1000); // كل ثانية
 }
 
 function resetTimer(){
     clearInterval(timerInterval);
-    minutes=0;
-    document.getElementById("time").innerText=0;
+    seconds = 0;
+    updateTimerDisplay();
     localStorage.setItem("studyTime",0);
 }
+
+function updateTimerDisplay(){
+    let mins = Math.floor(seconds / 60);
+    let secs = seconds % 60;
+    document.getElementById("time").innerText =
+        mins + ":" + (secs < 10 ? "0"+secs : secs);
+}
+
 
 /* تحميل البيانات عند الفتح */
 window.onload=function(){
     setDailyQuote();
     updateProgress();
-    document.getElementById("time").innerText=minutes;
+    updateTimerDisplay();
 };
 
-</script>
+function toggleSidebar(){
+    document.querySelector(".sidebar").classList.toggle("show");
+}
 
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </body>
 </html>
