@@ -210,8 +210,9 @@ iframe{
     <div class="lecture" onclick="openPDF(this,'./pdf/مالية عامة 1.pdf',0)">محاضرة 1</div>
     <div class="lecture" onclick="openPDF(this,'./pdf/مالية عامة 2.pdf',1)">محاضرة 2</div>
     <div class="lecture" onclick="openPDF(this,'./pdf/مالية عامة 3.pdf',2)">محاضرة 3</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/سكشن مالية 1.pdf',3)">سكشن 1</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/سكشن مالية 2.pdf',4)">سكشن 2</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/مالية عامة 4.pdf',3)">محاضرة 4</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/سكشن مالية 1.pdf',4)">سكشن 1</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/سكشن مالية 2.pdf',5)">سكشن 2</div> 
 
     <div class="progress-container">
         <p>نسبة التقدم</p>
@@ -246,7 +247,7 @@ iframe{
 
 <script>
 
-let totalLectures = 5;
+let totalLectures = 6;
 let completedLectures = JSON.parse(localStorage.getItem("completedLectures")) || [];
 let seconds = parseInt(localStorage.getItem("studyTime")) || 0;
 let timerInterval;
@@ -387,6 +388,7 @@ function toggleSidebar(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </body>
 </html>
+
 
 
 
