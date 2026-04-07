@@ -217,6 +217,7 @@ iframe{
     <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 8.pdf',7)">محاضرة 8</div> 
     <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 9.pdf',8)">محاضرة 9</div> 
     <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 10.pdf',9)">محاضرة 10</div>  -->
+    <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة موارد.pdf',10)">مراجعة ميد ترم</div>  -->
 
     <div class="progress-container">
         <p>نسبة التقدم</p>
@@ -251,7 +252,7 @@ iframe{
 
 <script>
 
-let totalLectures = 10;
+let totalLectures = 11;
 let completedLectures = JSON.parse(localStorage.getItem("completedLectures")) || [];
 let seconds = parseInt(localStorage.getItem("studyTime")) || 0;
 let timerInterval;
