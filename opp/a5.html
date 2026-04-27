@@ -215,19 +215,16 @@ iframe{
     <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 6.pdf',5)">محاضرة 6</div> 
     <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 7.pdf',6)">محاضرة 7</div> 
     <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 8.pdf',7)">محاضرة 8</div> 
-    <!--<div class="lecture" onclick="openPDF(this,'./pdf/اساليب 9.pdf',8)">محاضرة 9</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 10.pdf',9)">محاضرة 10</div>  -->
-    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب كمية 1.pdf',10)">سكشن 1</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 2.pdf',11)">سكشن 2</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 3.pdf',12)">سكشن 3</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/سكشن اساليب 4.pdf',13)">سكشن 4</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 5.pdf',14)">سكشن 5</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 6.pdf',15)">سكشن 6</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 7.pdf',16)">سكشن 7</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 8.pdf',17)">سكشن 8</div> 
-   <!--  <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 9.pdf',18)">سكشن 9</div>  -->
-    <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة اساليب.pdf',19)">مراجعة ميد ترم </div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة 1اساليب.pdf',20)">مراجعة</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب كمية 1.pdf',8)">سكشن 1</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 2.pdf',9)">سكشن 2</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 3.pdf',10)">سكشن 3</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/سكشن اساليب 4.pdf',11)">سكشن 4</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/سكشن اساليب 5.pdf',12)">سكشن 5</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 6.pdf',13)">سكشن 6</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 7.pdf',14)">سكشن 7</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/اساليب 8.pdf',15)">سكشن 8</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة اساليب.pdf',16)">مراجعة ميد ترم </div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة 1اساليب.pdf',17)">مراجعة</div> 
 
     <div class="progress-container">
         <p>نسبة التقدم</p>
@@ -262,7 +259,7 @@ iframe{
 
 <script>
 
-let totalLectures = 20;
+let totalLectures = 18;
 let completedLectures = JSON.parse(localStorage.getItem("completedLectures")) || [];
 let seconds = parseInt(localStorage.getItem("studyTime")) || 0;
 let timerInterval;
