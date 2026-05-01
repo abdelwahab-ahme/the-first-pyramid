@@ -6,30 +6,12 @@
 <title>Study Hub - Abdelwahab</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
 
-body{
-    display:flex;
-    height:100vh;
-    transition:0.4s;
-}
+body{display:flex;height:100vh;transition:0.4s;}
+body.dark{background:#0f172a;color:white;}
+body.light{background:#f1f5f9;color:#111;}
 
-body.dark{
-    background:#0f172a;
-    color:white;
-}
-
-body.light{
-    background:#f1f5f9;
-    color:#111;
-}
-
-/* Sidebar */
 .sidebar{
     width:30%;
     background:#111827;
@@ -38,10 +20,7 @@ body.light{
     overflow-y:auto;
 }
 
-.sidebar h2{
-    text-align:center;
-    margin-bottom:15px;
-}
+.sidebar h2{text-align:center;margin-bottom:15px;}
 
 .quote{
     background:#1f2937;
@@ -60,42 +39,21 @@ body.light{
     cursor:pointer;
     transition:0.3s;
 }
+.lecture:hover{background:#2563eb;}
+.lecture.active{background:#16a34a;}
 
-.lecture:hover{
-    background:#2563eb;
-}
-
-.lecture.active{
-    background:#16a34a;
-}
-
-/* Progress */
-.progress-container{
-    margin-top:15px;
-}
-
+.progress-container{margin-top:15px;}
 .progress-bar{
-    width:100%;
-    height:10px;
-    background:#374151;
-    border-radius:5px;
-    overflow:hidden;
+    width:100%;height:10px;background:#374151;
+    border-radius:5px;overflow:hidden;
 }
-
 .progress{
-    height:100%;
-    width:0%;
-    background:#22c55e;
-    transition:0.3s;
+    height:100%;width:0%;
+    background:#22c55e;transition:0.3s;
 }
 
-/* Timer */
-.timer{
-    margin-top:15px;
-    text-align:center;
-}
+.timer{margin-top:15px;text-align:center;}
 
-/* Buttons */
 .controls{
     margin-top:15px;
     display:flex;
@@ -104,15 +62,12 @@ body.light{
 }
 
 button{
-    padding:8px;
-    border:none;
+    padding:8px;border:none;
     border-radius:8px;
     cursor:pointer;
-    background:#2563eb;
-    color:white;
+    background:#2563eb;color:white;
 }
 
-/* Content */
 .content{
     width:70%;
     display:flex;
@@ -124,29 +79,15 @@ button{
 
 .tech-bg{
     position:absolute;
-    width:100%;
-    height:100%;
+    width:100%;height:100%;
     background:linear-gradient(135deg,#0f172a,#1e3a8a,#312e81);
     z-index:-1;
 }
 
-.tech-bg.alt{
-    background:linear-gradient(135deg,#111827,#0ea5e9,#6366f1);
-}
+iframe{display:none;}
 
-iframe{
-    width:90%;
-    height:90%;
-    border:none;
-    border-radius:15px;
-    display:none;
-}
+.welcome{font-size:26px;text-align:center;}
 
-.welcome{
-    font-size:26px;
-    text-align:center;
-}
-/* ======== زر القائمة للموبايل ======== */
 .menu-btn{
     display:none;
     position:absolute;
@@ -160,13 +101,8 @@ iframe{
     z-index:1000;
 }
 
-/* ======== Responsive ======== */
 @media(max-width:768px){
-
-    body{
-        flex-direction:column;
-    }
-
+    body{flex-direction:column;}
     .sidebar{
         position:fixed;
         width:75%;
@@ -176,224 +112,199 @@ iframe{
         z-index:999;
         transition:0.3s;
     }
-
-    .sidebar.show{
-        left:0;
-    }
-
-    .content{
-        width:100%;
-        height:100vh;
-    }
-
-    iframe{
-        width:100%;
-        height:100%;
-        border-radius:0;
-    }
-
-    .menu-btn{
-        display:block;
-    }
+    .sidebar.show{left:0;}
+    .content{width:100%;height:100vh;}
+    .menu-btn{display:block;}
 }
-
 </style>
 </head>
+
 <body class="dark">
 <button class="menu-btn" onclick="toggleSidebar()">☰</button>
 
 <div class="sidebar">
-    <h2>📚 المحاضرات</h2>
+<h2>📚 المحاضرات</h2>
 
-    <div class="quote" id="quoteBox"></div>
+<div class="quote" id="quoteBox"></div>
 
-    <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 1.pdf',0)">محاضرة 1</div>
-    <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 2.pdf',1)">محاضرة 2</div>
-    <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 3.pdf',2)">محاضرة 3</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 4.pdf',3)">محاضرة 4</div> 
+<div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 1.pdf',0)">محاضرة 1</div>
+<div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 2.pdf',1)">محاضرة 2</div>
+<div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 3.pdf',2)">محاضرة 3</div>
+    <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 4.pdf',3)">محاضرة 4</div>
     <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 5.pdf',4)">محاضرة 5</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 6.pdf',5)">محاضرة 6</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 7.pdf',6)">محاضرة 7</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 6.pdf',5)">محاضرة 6</div>
+    <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 7.pdf',6)">محاضرة 7</div>
     <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 8.pdf',7)">محاضرة 8</div> 
     <div class="lecture" onclick="openPDF(this,'./pdf/موارد بشرية 9.pdf',8)">محاضرة 9</div> 
-    <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة موارد.pdf',9)">مراجعة ميد ترم</div>  
-    <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة مواردنهائي.pdf',10)">مراجعة فاينل</div>  
+    <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة موارد.pdf',9)">مراجعة ميد ترم</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة مواردنهائي.pdf',10)">مراجعة فاينل</div>
 
-    <div class="progress-container">
-        <p>نسبة التقدم</p>
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
-        </div>
-    </div>
+<div class="progress-container">
+<p>نسبة التقدم</p>
+<div class="progress-bar">
+<div class="progress" id="progress"></div>
+</div>
+</div>
 
-    <div class="timer">
-        ⏱ وقت المذاكرة: <span id="time">0</span> دقيقة
-    </div>
+<div class="timer">
+⏱ وقت المذاكرة: <span id="time">0</span>
+</div>
 
-    <div class="controls">
-        <button onclick="toggleMode()">🌙 / ☀ تبديل الوضع</button>
-        <button onclick="changeBackground()">🎨 تغيير الخلفية</button>
-        <button onclick="startTimer()">▶ بدء</button>
-        <button onclick="resetTimer()">⏹ إعادة</button>
-        <button onclick="window.location.href='night.html'">🏠 الرئيسية</button>
+<div class="controls">
+<button onclick="toggleMode()">🌙 / ☀</button>
+<button onclick="startTimer()">▶</button>
+<button onclick="resetTimer()">⏹</button>
 
-    </div>
+<button onclick="startReading()">🔊 قراءة</button>
+<button onclick="stopReading()">⏹ إيقاف القراءة</button>
+
+<input type="color" onchange="changeColor(this.value)">
+<button onclick="clearDrawing()">🧽 مسح</button>
+</div>
 </div>
 
 <div class="content">
-    <div class="tech-bg" id="bg"></div>
+<div class="tech-bg"></div>
 
-    <div class="welcome" id="welcome">
-        ابدأ رحلتك النهارده 💻🔥
-    </div>
-
-    <div id="pdfContainer" style="width:100%;height:100%;overflow:auto;display:none;"></div>
+<div class="welcome" id="welcome">
+ابدأ رحلتك 🔥
 </div>
+
+<div id="pdfContainer" style="width:100%;height:100%;overflow:auto;display:none;"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
 <script>
 
-let totalLectures = 11;
-let completedLectures = JSON.parse(localStorage.getItem("completedLectures")) || [];
-let seconds = parseInt(localStorage.getItem("studyTime")) || 0;
+/* ===== متغيرات ===== */
+let seconds = 0;
 let timerInterval;
+let currentPDFText = "";
+let speechUtterance;
+let currentColor = "#ff0000";
 
-/* تحفيز يومي */
-const quotes = [
-"كل صفحة بتقربك من حلمك 🔥",
-"النجاح محتاج التزام مش مزاج 💪",
-"مستقبلك بيتبني دلوقتي ⏳",
-"شد حيلك… التعب مؤقت 👌",
-"أنت قدها 💻🚀"
-];
+/* ===== فتح PDF ===== */
+function openPDF(element,file){
 
-function setDailyQuote(){
-    let today = new Date().toDateString();
-    let savedDate = localStorage.getItem("quoteDate");
+document.getElementById("welcome").style.display="none";
 
-    if(savedDate !== today){
-        let randomQuote = quotes[Math.floor(Math.random()*quotes.length)];
-        localStorage.setItem("dailyQuote",randomQuote);
-        localStorage.setItem("quoteDate",today);
-    }
+const container = document.getElementById("pdfContainer");
+container.style.display="block";
+container.innerHTML="";
 
-    document.getElementById("quoteBox").innerText =
-        localStorage.getItem("dailyQuote");
+pdfjsLib.getDocument(file).promise.then(function(pdf){
+
+extractTextFromPDF(pdf);
+
+for(let i=1;i<=pdf.numPages;i++){
+pdf.getPage(i).then(function(page){
+
+const viewport = page.getViewport({scale:1.2});
+
+const canvas = document.createElement("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.height = viewport.height;
+canvas.width = viewport.width;
+
+const wrapper = document.createElement("div");
+wrapper.style.position="relative";
+
+const drawCanvas = document.createElement("canvas");
+drawCanvas.width = canvas.width;
+drawCanvas.height = canvas.height;
+drawCanvas.style.position="absolute";
+drawCanvas.style.top="0";
+drawCanvas.style.left="0";
+
+wrapper.appendChild(canvas);
+wrapper.appendChild(drawCanvas);
+container.appendChild(wrapper);
+
+page.render({canvasContext:ctx,viewport:viewport});
+
+/* رسم */
+let drawing=false;
+let dctx = drawCanvas.getContext("2d");
+
+drawCanvas.onmousedown=()=>drawing=true;
+drawCanvas.onmouseup=()=>drawing=false;
+drawCanvas.onmousemove=(e)=>{
+if(!drawing)return;
+dctx.lineWidth=3;
+dctx.strokeStyle=currentColor;
+dctx.lineTo(e.offsetX,e.offsetY);
+dctx.stroke();
+dctx.beginPath();
+dctx.moveTo(e.offsetX,e.offsetY);
+};
+
+});
+}
+});
 }
 
-/* فتح PDF */
-function openPDF(element,file,index){
-
-    document.querySelectorAll(".lecture")
-        .forEach(el=>el.classList.remove("active"));
-
-    element.classList.add("active");
-
-    document.getElementById("welcome").style.display="none";
-
-    const container = document.getElementById("pdfContainer");
-    container.style.display = "block";
-    container.innerHTML = "";
-
-    const loadingTask = pdfjsLib.getDocument(file);
-
-    loadingTask.promise.then(function(pdf) {
-
-        for(let pageNum = 1; pageNum <= pdf.numPages; pageNum++){
-
-            pdf.getPage(pageNum).then(function(page){
-
-                const scale = 1.2;
-                const viewport = page.getViewport({scale: scale});
-
-                const canvas = document.createElement("canvas");
-                const context = canvas.getContext("2d");
-
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-                canvas.style.width = "100%";
-                canvas.style.marginBottom = "10px";
-
-                container.appendChild(canvas);
-
-                page.render({
-                    canvasContext: context,
-                    viewport: viewport
-                });
-            });
-        }
-    });
-
-    document.querySelector(".sidebar").classList.remove("show");
-
-    if(!completedLectures.includes(index)){
-        completedLectures.push(index);
-        localStorage.setItem("completedLectures",JSON.stringify(completedLectures));
-        updateProgress();
-    }
+/* ===== استخراج النص ===== */
+function extractTextFromPDF(pdf){
+currentPDFText="";
+for(let i=1;i<=pdf.numPages;i++){
+pdf.getPage(i).then(p=>{
+p.getTextContent().then(t=>{
+currentPDFText+=t.items.map(x=>x.str).join(" ");
+});
+});
+}
 }
 
-
-
-
-/* تحديث التقدم */
-function updateProgress(){
-    let percent = (completedLectures.length/totalLectures)*100;
-    document.getElementById("progress").style.width=percent+"%";
+/* ===== قراءة صوت ===== */
+function startReading(){
+if(!currentPDFText){alert("افتح ملف");return;}
+speechUtterance=new SpeechSynthesisUtterance(currentPDFText);
+speechUtterance.lang="ar-EG";
+speechSynthesis.speak(speechUtterance);
 }
 
-/* الوضع */
-function toggleMode(){
-    document.body.classList.toggle("light");
-    document.body.classList.toggle("dark");
+function stopReading(){
+speechSynthesis.cancel();
 }
 
-/* الخلفية */
-function changeBackground(){
-    document.getElementById("bg").classList.toggle("alt");
+/* ===== قلم ===== */
+function changeColor(c){currentColor=c;}
+
+function clearDrawing(){
+document.querySelectorAll("canvas").forEach(c=>{
+let ctx=c.getContext("2d");
+ctx && ctx.clearRect(0,0,c.width,c.height);
+});
 }
 
-/* العداد */
+/* ===== Timer ===== */
 function startTimer(){
-    clearInterval(timerInterval);
-    timerInterval = setInterval(()=>{
-        seconds++;
-        updateTimerDisplay();
-        localStorage.setItem("studyTime",seconds);
-    },1000); // كل ثانية
+clearInterval(timerInterval);
+timerInterval=setInterval(()=>{
+seconds++;
+document.getElementById("time").innerText=seconds;
+},1000);
 }
 
 function resetTimer(){
-    clearInterval(timerInterval);
-    seconds = 0;
-    updateTimerDisplay();
-    localStorage.setItem("studyTime",0);
+clearInterval(timerInterval);
+seconds=0;
+document.getElementById("time").innerText=0;
 }
 
-function updateTimerDisplay(){
-    let mins = Math.floor(seconds / 60);
-    let secs = seconds % 60;
-    document.getElementById("time").innerText =
-        mins + ":" + (secs < 10 ? "0"+secs : secs);
+/* ===== UI ===== */
+function toggleMode(){
+document.body.classList.toggle("light");
+document.body.classList.toggle("dark");
 }
-
-
-/* تحميل البيانات عند الفتح */
-window.onload=function(){
-    setDailyQuote();
-    updateProgress();
-    updateTimerDisplay();
-};
 
 function toggleSidebar(){
-    document.querySelector(".sidebar").classList.toggle("show");
+document.querySelector(".sidebar").classList.toggle("show");
 }
 
-
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
 </body>
 </html>
-
-
-
-
