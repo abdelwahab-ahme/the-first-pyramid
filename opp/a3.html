@@ -220,6 +220,8 @@ iframe{
     <div class="lecture" onclick="openPDF(this,'./pdf/تكنولوجيا المعلومات والابتكار 11.pdf',10)">محاضرة 11</div> 
     <div class="lecture" onclick="openPDF(this,'./pdf/تكنولوجيا المعلومات والابتكار 12.pdf',11)">محاضرة 12</div> 
     <div class="lecture" onclick="openPDF(this,'./pdf/بنك اسئلة ابتكار.pdf ميد.pdf',12)">مراجعة  الميد ترم 1</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/بنك ابتكار.pdf ميد.pdf',13)">مراجعة نهائية</div> 
+    <div class="lecture" onclick="openPDF(this,'./pdf/اسئلة بنك ابتكار.pdf ميد.pdf',14)">مراجعة اسئلة</div> 
    
 
     <div class="progress-container">
@@ -296,6 +298,17 @@ function openPDF(element,file,index){
     const container = document.getElementById("pdfContainer");
     container.style.display = "block";
     container.innerHTML = "";
+
+    /* 🔥 إظهار زر التحميل */
+    const downloadBtn = document.getElementById("downloadBtn");
+    downloadBtn.style.display = "block";
+
+    downloadBtn.onclick = function(){
+        const a = document.createElement("a");
+        a.href = file;
+        a.download = file.split("/").pop(); // اسم الملف
+        a.click();
+    };
 
     const loadingTask = pdfjsLib.getDocument(file);
 
