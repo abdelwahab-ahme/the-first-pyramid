@@ -239,7 +239,13 @@ iframe{
         <button onclick="startTimer()">▶ بدء</button>
         <button onclick="resetTimer()">⏹ إعادة</button>
         <button onclick="window.location.href='night.html'">🏠 الرئيسية</button>
-
+        <button id="downloadBtn" style="
+        background:#16a34a;
+        color:white;
+        
+        ">
+        ⬇ تحميل الملف
+        </button>
     </div>
 </div>
 
@@ -297,6 +303,17 @@ function openPDF(element,file,index){
     container.style.display = "block";
     container.innerHTML = "";
 
+    /* 🔥 إظهار زر التحميل */
+    const downloadBtn = document.getElementById("downloadBtn");
+    downloadBtn.style.display = "block";
+
+    downloadBtn.onclick = function(){
+        const a = document.createElement("a");
+        a.href = file;
+        a.download = file.split("/").pop(); // اسم الملف
+        a.click();
+    };
+
     const loadingTask = pdfjsLib.getDocument(file);
 
     loadingTask.promise.then(function(pdf) {
@@ -334,7 +351,6 @@ function openPDF(element,file,index){
         updateProgress();
     }
 }
-
 
 
 
